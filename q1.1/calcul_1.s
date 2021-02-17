@@ -17,7 +17,7 @@ calcul_1 :
    movl adr, %ebx         #load premier nombre
    movl $0, %edx          #reset edx
 
-Boucle:
+BOUCLE:
    movl %ebx,  %eax        # load dans eax l'element ecx du tableau adr
    addl %eax, %ebx         # += x
    addl %eax, %ebx         # += x
@@ -25,7 +25,7 @@ Boucle:
    addl $4, %edx           # increase offset
 
    #Condition
-   loop Boucle         
+   loop BOUCLE         
    ret
 
 
