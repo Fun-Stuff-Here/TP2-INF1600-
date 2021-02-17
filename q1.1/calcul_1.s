@@ -11,7 +11,21 @@ calcul_1 :
 #########
 #votre code ici
 #########
-   
+
+   #init
+   movl $18, %ecx         #load nIteration
+   movl adr, %ebx         #load premier nombre
+   movl $0, %edx          #reset edx
+
+Boucle:
+   movl %ebx,  %eax        # load dans eax l'element ecx du tableau adr
+   addl %eax, %ebx         # += x
+   addl %eax, %ebx         # += x
+   movl %ebx, adr(%edx)    # store ebx dans l'element ecx du tableau adr 
+   addl $4, %edx           # increase offset
+
+   #Condition
+   loop Boucle         
    ret
 
 
