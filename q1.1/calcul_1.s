@@ -8,9 +8,9 @@ adr:
 
 calcul_1 :
 
-#########
-#votre code ici
-#########
+   #prologue
+    pushl %ebp
+    movl %esp , %ebp
 
    #init
    movl $18, %ecx         #load nIteration
@@ -25,7 +25,10 @@ BOUCLE:
    addl $4, %edx           # increase offset
 
    #Condition
-   loop BOUCLE         
+   loop BOUCLE     
+
+   #epilogue
+   leave    
    ret
 
 
