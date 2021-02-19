@@ -11,11 +11,12 @@ calcul_1 :
    #prologue
     pushl %ebp
     movl %esp , %ebp
+    pushl %ebx             #Respect convention c
 
    #init
-   movl $18, %ecx         #load nIteration
-   movl adr, %ebx         #load premier nombre
-   movl $0, %edx          #reset edx
+   movl $18, %ecx          #load nIteration
+   movl adr, %ebx          #load premier nombre
+   movl $0, %edx           #reset edx
 
 BOUCLE:
    movl %ebx,  %eax        # load dans eax l'element ecx du tableau adr
@@ -28,6 +29,7 @@ BOUCLE:
    loop BOUCLE     
 
    #epilogue
+   popl %ebx
    leave    
    ret
 
