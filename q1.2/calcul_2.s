@@ -2,35 +2,37 @@
 .globl calcul_2
 calcul_2 :
 
-########
-#votre code ici
-########
+    #prologue
+    pushl %ebp
+    movl %esp , %ebp
 
-    #init
-    movl $64, %ecx
-    movl $0, %ebx
-    movl $0, %edx
+    #initialisation
+    movl $64, %ecx                  #nIteration = 64
+    movl $0, %eax                   #eax =0
+    movl $0, %edx                   #ebx=0
     jmp BOUCLE
 
 
 RETENUE:
-    add $1, %ebx
+    inc %eax                        #ajoute la retenue 
 
 BOUCLE:
-    CLC
-    movl adr_x(%edx), %ebx 
-    addl adr_y(%edx), %ebx
-    movl %ebx, adr_z(%edx)
-    movl $0, %ebx
-    add $4, %edx
+    CLC                             #clear CF
+    addl adr_x(,%edx,4), %eax       #add xi
+    addl adr_y(,%edx,4), %eax       #add yi
+    movl %eax, adr_z(,%edx,4)       #store zi
+    movl $0, %eax                   #eax =0 
+    inc %edx                        #augment l'index
 
     #Condition
-    subl $1, %ecx
-    jecxz FIN
-    jc RETENUE
-    jnc BOUCLE
+    dec %ecx                        #nIteration -1
+    jecxz FIN                       #jump fin si nIteration ==0
+    jc RETENUE                      #jump RETENUE si CF=1
+    jmp BOUCLE                      #jump BOUCLE 
 
 FIN:
+    #epilogue
+    leave
     ret
 
 
