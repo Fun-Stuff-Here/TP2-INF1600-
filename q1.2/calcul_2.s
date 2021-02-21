@@ -19,7 +19,14 @@ RETENUE:
 BOUCLE:
     CLC                             #clear CF
     addl adr_x(,%edx,4), %eax       #add xi
+IF:   
+    jc ELSE                         #jump vers ELSE si CF = 1
     addl adr_y(,%edx,4), %eax       #add yi
+    jmp ENDIF                       #jump vers ENDIF
+ELSE:
+    addl adr_y(,%edx,4), %eax       #add yi
+    STC                             #set CF = 1
+ENDIF:
     movl %eax, adr_z(,%edx,4)       #store zi
     movl $0, %eax                   #eax =0 
     inc %edx                        #augment l'index
