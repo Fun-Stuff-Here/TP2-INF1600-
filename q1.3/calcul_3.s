@@ -34,9 +34,9 @@ BOUCLE_PUISSANCE:
      # init
      movl $64, %ecx                     # nIteration BOUCLE_ADDITION
      movl $0, %edx                      # initialise j
-BOUCLE_ADDITION:
      CLC                                # clear CF
-
+     
+BOUCLE_ADDITION:
      # addition
      movl adr_temp(,%edx,4), %eax       # prend le dernier multiple de trois
      adc adr_temp(,%edx,4),%eax         # additionne une deuxieme fois multiple de trois
