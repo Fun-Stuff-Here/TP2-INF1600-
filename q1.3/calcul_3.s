@@ -9,14 +9,27 @@ adr_res:
 .globl calcul_3
 
 calcul_3 :
-pushl %ebx
+     #prologue
+     pushl %ebp
+     movl %esp, %ebp
+     pushl %ebx
 
-#########
-#votre code ici
-#########
-   
-popl %ebx
-ret
+     #init
+     movl $0, %eax
+     movl $10, %ecx
+     movl $0, %edx
+     # movl $0, adr_temp()
+     # loopyloop for little endian adr_temp(index 00000....1)
+
+BOUCLE:
+   movl %ebx, %eax         # load dans eax l'element ecx du tableau adr
+   addl %eax, %ebx         # += x
+   addl %eax, %ebx         # += x
+
+#epilogue 
+     popl %ebx
+     leave
+     ret
 
 
 
